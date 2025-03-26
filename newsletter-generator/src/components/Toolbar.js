@@ -1,13 +1,36 @@
+import { useState } from "react";
+import "@fontsource/poppins"; // Importando a fonte Poppins
+
 export default function Toolbar({ fetchPosts, generateHTML }) {
-    return (
-      <div className="mb-4 flex gap-2">
-        <button onClick={fetchPosts} className="bg-blue-500 text-white px-4 py-2 rounded">
-          Get content
-        </button>
-        <button onClick={generateHTML} className="bg-purple-500 text-white px-4 py-2 rounded">
-          Generate HTML
-        </button>
-      </div>
-    );
-  }
-  
+  const [loading, setLoading] = useState(false);
+  const [postsLoaded, setPostsLoaded] = useState(false);
+
+  const handleFetchPosts = async () => {
+    setLoading(true);
+    await fetchPosts();
+    setLoading(false);
+    setPostsLoaded(true);
+  };
+
+  return (
+    <div className="mt-4 flex gap-2 font-poppins">
+      <button
+        onClick={handleFetchPosts}
+        disabled={loading}
+        className={`px-6 py-3 rounded-3xl flex items-center gap-2 ${loading ? "bg-gray-400" : "bg-[#63acd5] text-white"}`}
+      >
+        {loading && (
+          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        )}
+        {loading ? "Loading..." : "Get content"}
+      </button>
+      <button
+        onClick={() => generateHTML()}
+        disabled={!postsLoaded}
+        className={`px-6 py-3 rounded-3xl ${postsLoaded ? "bg-[#63acd5] text-white" : "bg-gray-400"}`}
+      >
+        Generate HTML
+      </button>
+    </div>
+  );
+}
