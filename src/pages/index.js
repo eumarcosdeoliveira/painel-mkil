@@ -95,9 +95,9 @@ export default function Home() {
         </div>
 
         {/* Seletor de Data */}
-        <div className="ml-2 mr-2 mb-4 flex h-full justify-center lg:justify-start">
+        <div className="mb-4 mt-4">
           
-          <div className="flex ml-2 mr-2 p-0 h-full items-center">
+          <div className="flex items-center justify-center lg:justify-start">
             <input
               type="date"
               value={startDate}
@@ -105,7 +105,7 @@ export default function Home() {
                 setStartDate(e.target.value);
                 setErrors((prev) => ({ ...prev, startDate: false }));
               }}
-              className="border rounded-lg p-2 w-21"
+              className="border rounded-lg p-2 w-21 lg:w-full"
             />
             <span className="mx-2 text-gray-500">até</span>
             <input
@@ -115,7 +115,7 @@ export default function Home() {
                 setEndDate(e.target.value);
                 setErrors((prev) => ({ ...prev, endDate: false }));
               }}
-              className="border rounded-lg p-2 w-21"
+              className="border rounded-lg p-2 w-21 lg:w-full"
             />
           </div>
           {(errors.startDate || errors.endDate) && (
