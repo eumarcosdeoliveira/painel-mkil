@@ -13,28 +13,30 @@ export default function Home() {
   const fetchPosts = async () => {
     const response = await fetch("https://n8n.harmonyservices.com.br/webhook/dddad635-e5a9-428f-af07-dd6127c428ee");
     const data = await response.json();
-    setPosts(data.map(post => ({ ...post, isSettlement: false }))); // Adiciona isSettlement inicialmente como false
+    setPosts(data.map(post => ({ ...post, isSettlement: false })));
     setSelectedPosts(data.map((post) => post.post_id));
   };
 
   const toggleSettlement = (postId) => {
-    setPosts(posts.map(post => 
-      post.post_id === postId ? { ...post, isSettlement: !post.isSettlement } : post
-    ));
+    setPosts((prevPosts) => 
+      prevPosts.map(post => 
+        post.post_id === postId ? { ...post, isSettlement: !post.isSettlement } : post
+      )
+    );
   };
+  
 
   const generateHTML = () => {
-    const selected = posts.filter((post) => selectedPosts.includes(post.post_id));
+    const selected = posts.filter((post) => selectedPosts.includes(post.post_id) || post.isSettlement);
     const html = generateNewsletterHTML(selected, preheader);
     setHtmlContent(html);
   };
 
   return (
-    <div className="flex h-screen max-h-screen bg-gray-100 p-6">
-      <div className="flex flex-col h-full w-2/4 p-6">
-        <img src="logo.svg" alt="Logo" className="mb-8 w-40" />
+    <div className="flex flex-col lg:flex-row min-h-screen lg:h-screen bg-gray-100 p-1 lg:p-6 mx-auto"> {/* Alterado para col em telas pequenas */}
+      <div className="flex flex-col h-full max-h-[830px] lg:max-h-none lg:w-2/4 p-6"> {/* Responsivo */}
+        <img src="logo.svg" alt="Logo" className="mb-4 lg:mb-8 w-32 lg:w-40 mx-auto lg:mx-0" />
 
-        {/* Campo para inserir o Preheader */}
         <div className="mb-4">
           <input
             type="text"
@@ -59,15 +61,17 @@ export default function Home() {
                       : [...selectedPosts, post.post_id]
                   )
                 }
-                onToggleSettlement={() => toggleSettlement(post.post_id)} // Passa a função para o PostCard
+                onToggleSettlement={() => toggleSettlement(post.post_id)}
               />
             ))}
           </div>
         </div>
+        <div className="mt-4 flex justify-center lg:justify-start">
         <Toolbar fetchPosts={fetchPosts} generateHTML={generateHTML} />
+        </div>
       </div>
 
-      <div className="w-3/4 p-6 bg-white rounded-2xl shadow-lg ml-4 flex flex-col h-full">
+      <div className="lg:w-3/4 p-6 bg-white rounded-2xl shadow-lg lg:ml-4 flex flex-col h-full mt-4 lg:mt-0"> {/* Ajustes para responsividade */}
         <Preview htmlContent={htmlContent} />
       </div>
     </div>

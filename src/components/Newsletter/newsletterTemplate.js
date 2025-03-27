@@ -1,6 +1,7 @@
 // src/components/newsletter/newsletterTemplate.js
 
 export const generateNewsletterHTML = (selected, preheader) => {
+    
     return `
     <!DOCTYPE html>
     <html lang="en">
