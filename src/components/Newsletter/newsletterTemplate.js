@@ -16,8 +16,8 @@ export const generateNewsletterHTML = (selected, preheader) => {
             }
     
             body {
-                margin: 0;
-                padding: 0 font-family: 'Montserrat', sans-serif;
+                margin: 0 !important;
+                padding: 0 font-family: 'Montserrat', sans-serif !important;
                 background-color: #242846;
             }
     
@@ -257,7 +257,7 @@ export const generateNewsletterHTML = (selected, preheader) => {
     </head>
     
     <body class="body"
-        style="background-color: #242846; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+        style="background-color: #242846; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none margin:0; padding:0;">
         <table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
             style="mso-table-lspace: 0pt; padding-left: 15px; padding-right: 15px; mso-table-rspace: 0pt; background-color: #242846; background-repeat: no-repeat; background-size: cover;  margin-bottom: 3%;">
 
@@ -447,9 +447,7 @@ export const generateNewsletterHTML = (selected, preheader) => {
                                                     style="width: 100%; padding-left: 10px; background-color: #242846;">
                                                     <h2 class="title"
                                                         style="word-wrap: break-word; margin: 0; font-weight: bold; color: white;">
-                                                        ${post.title}</h2>
-                                                    <p class="Author" style="margin: 5px 0; font-weight: 300; color: white;">From
-                                                        ${post.Author}</p>
+                                                        ${post.title}</h2>                                                   
                                                     <p class="text"
                                                         style="word-wrap: break-word; margin: 5px 0; font-weight: 400; color: white;">
                                                         ${post.caption}</p>
