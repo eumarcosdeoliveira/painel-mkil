@@ -1,7 +1,7 @@
 // src/components/newsletter/newsletterTemplate.js
 
 export const generateNewsletterHTML = (selected, preheader) => {
-    
+
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -345,8 +345,8 @@ export const generateNewsletterHTML = (selected, preheader) => {
   <div class="white-container"
       style="background-color: #FFFFFF; border-radius: 10px; padding: 20px; width: 650px; margin: 20px auto;">
       ${selected
-        .filter(post => post.media_type !== "WEBSITE_POST" && !post.isSettlement) // Removendo os Settlements
-        .map(post => `
+            .filter(post => post.media_type !== "WEBSITE_POST" && !post.isSettlement) // Removendo os Settlements
+            .map(post => `
           <table class="row" width="100%" cellpadding="0" cellspacing="0"
               style="padding: 15px; width: 100%;">
               <tr>
@@ -369,7 +369,7 @@ export const generateNewsletterHTML = (selected, preheader) => {
                                   <p class="text" style="word-wrap: break-word; margin: 5px 0;">
                                       ${post.ia_description}</p>
                                   <a href="${post.permalink}" target="_blank" class="button"
-                                      style="display: inline-block; margin-top: 10px;">See more </a>
+                                      style="display: inline-block; margin-top: 10px; color: white;">See more </a>
                               </td>
                           </tr>
                       </table>
@@ -397,8 +397,8 @@ export const generateNewsletterHTML = (selected, preheader) => {
   <div class="settlement-container"
       style="background-color: #a52122; border-radius: 0px 0px 10px 10px; padding: 20px; width: 650px; margin: 0px auto; color: white;">
       ${selected
-        .filter(post => post.media_type !== "WEBSITE_POST" && post.isSettlement) // Apenas os Settlements
-        .map(post => `
+            .filter(post => post.media_type !== "WEBSITE_POST" && post.isSettlement) // Apenas os Settlements
+            .map(post => `
           <table class="row" width="100%" cellpadding="0" cellspacing="0"
               style="padding: 15px; width: 100%;">
               <tr>
@@ -423,7 +423,7 @@ export const generateNewsletterHTML = (selected, preheader) => {
                                   <p class="text" style="word-wrap: break-word; margin: 5px 0; font-weight: normal; color: white;">
                                       ${post.ia_description}</p>
                                   <a href="${post.permalink}" target="_blank" class="button-settlement"
-                                      style="display: inline-block; margin-top: 10px; color: white; text-decoration: underline;">See more </a>
+                                      style="display: inline-block; margin-top: 10px; color: white;">See more </a>
                               </td>
                           </tr>
                       </table>
@@ -1108,4 +1108,4 @@ export const generateNewsletterHTML = (selected, preheader) => {
     
     </html>
     `;
-    };
+};
