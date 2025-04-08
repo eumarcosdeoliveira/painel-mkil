@@ -9,6 +9,7 @@ export const generateNewsletterHTML = (selected, preheader) => {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
         <title></title>
         <style>
             * {
@@ -19,6 +20,8 @@ export const generateNewsletterHTML = (selected, preheader) => {
                 margin: 0 !important;
                 padding: 0 font-family: 'Montserrat', sans-serif !important;
                 background-color: #242846;
+                 -webkit-text-size-adjust: none !important;
+                 -ms-text-size-adjust: none !important;
             }
     
             a[x-apple-data-detectors] {
@@ -271,9 +274,21 @@ export const generateNewsletterHTML = (selected, preheader) => {
                 <tr>
                     <td>
                         <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0"
-                            role="presentation"
-                            style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #242846; border-radius: 0; color: #000000; width: 650px; margin: 0 auto; margin-top: 3%;"
-                            width="650">
+                        role="presentation"
+                        style="
+                            mso-table-lspace: 0pt; 
+                            mso-table-rspace: 0pt; 
+                            background-color: #242846; 
+                            border-radius: 0; 
+                            color: #000000; 
+                            width: 650px; 
+                            max-width: 650px; 
+                            min-width: 650px;
+                            table-layout: fixed;
+                            margin: 0 auto; 
+                            margin-top: 3%;"
+                        width="650">
+
                             <tbody>
                                 <tr>
                                     <td class="column column-1" width="100%"
@@ -358,27 +373,11 @@ export const generateNewsletterHTML = (selected, preheader) => {
                                   style="text-align: center; vertical-align: middle; width: 33%;">
                                   <a href="${post.permalink}" target="_blank"
                                       style="display: block; width: 100%;">
-                                      <table width="180" height="180" cellpadding="0" cellspacing="0" border="0" 
-  style="width: 180px; height: 180px; border-radius: 16px; overflow: hidden;">
-  <tr>
-    <td 
-      valign="top" 
-      background="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" 
-      style="
-        background-image: url('${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}');
-        background-size: cover;
-        background-position: center;
-        width: 180px;
-        height: 180px;
-        border-radius: 16px;
-      ">
-      <a href="${post.permalink}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none;">
-        &nbsp;
-      </a>
-    </td>
-  </tr>
-</table>
-                                    
+                                      <div style="width: 100%; max-width: 180px; height: 180px; overflow: hidden; border-radius: 16px;">
+                                        <img src="${post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url}" 
+                                            alt="Post image" width="180" height="180"
+                                            style="display: block; border-radius: 0; border: none; width: 180px; height: 180px; object-position: center; vertical-align: top;" />
+                                      </div>                                      
                                   </a>
                               </td>
                               <td class="column" width="67%" style="width: 67%; padding-left: 10px;">
