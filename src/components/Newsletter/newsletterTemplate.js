@@ -372,12 +372,28 @@ export const generateNewsletterHTML = (selected, preheader) => {
                               <td class="column" width="33%"
                                   style="text-align: center; vertical-align: middle; width: 33%;">
                                   <a href="${post.permalink}" target="_blank"
-                                      style="display: block; width: 100%;">
-                                      <div style="width: 100%; max-width: 180px; height: 180px; overflow: hidden; border-radius: 16px;">
-                                        <img src="${post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url}" 
-                                            alt="Post image" width="180" height="180"
-                                            style="display: block; border-radius: 0; border: none; width: 180px; height: 180px; object-position: center; vertical-align: top;" />
-                                      </div>                                      
+                                        style="display: block; width: 100%;">
+                                        <table width="180" height="180" cellpadding="0" cellspacing="0" border="0" 
+                                            style="width: 180px; height: 180px; border-radius: 16px; overflow: hidden;">
+                                            <tr>
+                                                <td 
+                                                valign="top" 
+                                                background="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" 
+                                                style="
+                                                    background-image: url('${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}');
+                                                    background-size: cover;
+                                                    background-position: center;
+                                                    width: 180px;
+                                                    height: 180px;
+                                                    border-radius: 16px;
+                                                ">
+                                                <a href="${post.permalink}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none;">
+                                                    &nbsp;
+                                                </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                     
                                   </a>
                               </td>
                               <td class="column" width="67%" style="width: 67%; padding-left: 10px;">
