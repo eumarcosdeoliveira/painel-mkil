@@ -358,9 +358,11 @@ export const generateNewsletterHTML = (selected, preheader) => {
                                   style="text-align: center; vertical-align: middle; width: 33%;">
                                   <a href="${post.permalink}" target="_blank"
                                       style="display: block; width: 100%;">
-                                      <img src="${post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url}" 
-                                          alt="Post image" class="image"
-                                          style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 5px; display: block;" />
+                                      <div style="width: 100%; max-width: 180px; height: 180px; overflow: hidden; border-radius: 16px;">
+                                        <img src="${post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url}" 
+                                            alt="Post image" width="180" height="180"
+                                            style="display: block; border-radius: 0; border: none; width: 180px; height: 180px; object-position: center; vertical-align: top;" />
+                                      </div>                                      
                                   </a>
                               </td>
                               <td class="column" width="67%" style="width: 67%; padding-left: 10px;">
